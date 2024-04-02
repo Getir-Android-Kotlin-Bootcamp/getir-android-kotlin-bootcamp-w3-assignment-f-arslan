@@ -2,6 +2,9 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -52,7 +55,8 @@ android {
     sourceSets {
         getByName("main") {
             res {
-                srcDirs("src/main/res", "src/main/res/layouts/splash",
+                srcDirs(
+                    "src/main/res", "src/main/res/layouts/splash",
                     "src/main/res/layouts/onboarding", "src/main/res/layouts/account"
                 )
             }
@@ -68,6 +72,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-places:17.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -79,4 +85,12 @@ dependencies {
     //viewbinding
     implementation("com.wada811.viewbindingktx:viewbindingktx:3.1.0")
 
+    // datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.51")
+    ksp("com.google.dagger:hilt-compiler:2.51")
+
+    // places
+    implementation("com.google.android.libraries.places:places:3.4.0")
 }
